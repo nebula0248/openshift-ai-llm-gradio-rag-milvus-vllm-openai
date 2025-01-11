@@ -1,3 +1,5 @@
+> Note: This repo has been modified to allow customizing the embedding model rather than hardcoding to use the nomic-ai embedding. In this case, you can change the EMBEDDING_MODEL_NAME env in the K8S deployment to suit different needs.
+
 # Gradio UI for RAG using vLLM Inference server and Milvus
 
 This is a simple UI example for a RAG-based Chatbot using Gradio, vLLM Inference server, and Milvus as a vector database.
@@ -47,5 +49,6 @@ The different parameters you can/must pass as environment variables in the deplo
 - PROMPT_FILE: File where the Prompt is stored (normally a mounted ConfigMap). Mandatory
 - MAX_RETRIEVED_DOCS: Maximum number of documents returned by the search. Optional, defaults to 4
 - SCORE_THRESHOLD: Maximum allowed score when retrieving document (the score is a cosine distance, the lesser the better. Optional, defaults to 0.99
+- EMBEDDING_MODEL_NAME: The Hugging Face Embedding Model name and path (e.g. ibm-granite/granite-embedding-278m-multilingual)
 
 The deployment replicas is set to 0 initially to let you properly fill in those parameters. Don't forget to scale it up if you want see something 😉!

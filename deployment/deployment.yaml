@@ -56,7 +56,7 @@ spec:
             - name: INFERENCE_SERVER_URL
               value: 'https://your_inference_endpoint'
             - name: MODEL_NAME
-              value: 'mistralai/Mistral-7B-Instruct-v0.2'
+              value: 'YOUR_MODEL_NAME_HERE'
             - name: MAX_TOKENS
               value: '1024'
             - name: TOP_P
@@ -83,6 +83,8 @@ spec:
               value: '4'
             - name: SCORE_THRESHOLD
               value: '0.99'
+            - name: EMBEDDING_MODEL_NAME
+              value: 'YOUR_EMBEDDING_MODEL_NAME_HERE'
           securityContext:
             capabilities:
               drop:
@@ -106,7 +108,7 @@ spec:
             successThreshold: 1
             failureThreshold: 24
           terminationMessagePolicy: File
-          image: 'quay.io/rh-aiservices-bu/gradio-rag-milvus-vllm-openai:latest'
+          image: 'quay.io/nebula0248/openshift-ai-llm-gradio-rag-milvus-vllm-openai:ca745cc'
           volumeMounts:
             - name: collections
               mountPath: /opt/app-root/src/collections.json

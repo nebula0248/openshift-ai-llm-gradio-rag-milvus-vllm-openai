@@ -45,6 +45,8 @@ PROMPT_FILE = os.getenv('PROMPT_FILE', 'default_prompt.txt')
 MAX_RETRIEVED_DOCS = int(os.getenv('MAX_RETRIEVED_DOCS', 4))
 SCORE_THRESHOLD = float(os.getenv('SCORE_THRESHOLD', 0.99))
 
+EMBEDDING_MODEL_NAME = os.getenv('EMBEDDING_MODEL_NAME')
+
 # Load collections from JSON file
 with open(MILVUS_COLLECTIONS_FILE, 'r') as file:
     collections_data = json.load(file)
@@ -152,7 +154,7 @@ def stream(input_text, selected_collection) -> Generator:
 # Document store: Milvus
 model_kwargs = {'trust_remote_code': True}
 embeddings = HuggingFaceEmbeddings(
-    model_name="nomic-ai/nomic-embed-text-v1",
+    model_name=EMBEDDING_MODEL_NAME,
     model_kwargs=model_kwargs,
     show_progress=False
 )
@@ -190,13 +192,13 @@ with gr.Blocks(title="Knowledge base backed Chatbot", css=css) as demo:
             gr.Markdown(f"# {APP_TITLE}")
     with gr.Row():
         with gr.Column(scale=1):
-            gr.Markdown(f"This chatbot lets you chat with a Large Language Model (LLM) that can be backed by different knowledge bases (or none).")
+            gr.Markdown(f"This chatbot lets you chat with a Language Model that can be backed by different knowledge bases (or none).")
             collection = gr.Dropdown(
                 choices=collection_options,
                 label="Knowledge Base:",
                 value=DEFAULT_COLLECTION,
                 interactive=True,
-                info="Choose the knowledge base the LLM will have access to:"
+                info="Choose the knowledge base the language model will have access to:"
             )
             collection.input(select_collection, inputs=[collection,selected_collection_var], outputs=[selected_collection_var]),
         with gr.Column(scale=4):

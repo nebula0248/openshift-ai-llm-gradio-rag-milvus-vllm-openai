@@ -4,6 +4,7 @@ metadata:
   name: gradio-rag-milvus-vllm-openai
   labels:
     app: gradio-rag-milvus-vllm-openai
+spec:
   to:
     kind: Service
     name: gradio-rag-milvus-vllm-openai
