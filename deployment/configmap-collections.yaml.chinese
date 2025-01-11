@@ -6,5 +6,5 @@ data:
   collections.json: |-
     [
       {"name":"none","display_name":"None"},
-      {"name":"openshift_container_platform_4_17_zh_cn_document","display_name":"OpenShift Container Platform 4.17 (中文)"},
+      {"name":"openshift_container_platform_4_17_zh_cn_document","display_name":"OpenShift Container Platform 4.17 (中文)"}
     ]
