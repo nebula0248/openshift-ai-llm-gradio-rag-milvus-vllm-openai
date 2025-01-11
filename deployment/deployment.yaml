@@ -5,7 +5,7 @@ metadata:
   labels:
     app: gradio-rag-milvus-vllm-openai
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: gradio-rag-milvus-vllm-openai
@@ -50,13 +50,13 @@ spec:
             failureThreshold: 3
           env:
             - name: APP_TITLE
-              value: 'Chat with your Knowledge Base'
+              value: 'Red Hat Documentation Chatbot (English)'
             - name: SHOW_TITLE_IMAGE
               value: 'True'
             - name: INFERENCE_SERVER_URL
-              value: 'https://your_inference_endpoint'
+              value: 'https://qwen-25-7b-instruct-peter-lm.apps.rosa.peter-rosa-hcp.y0r0.p3.openshiftapps.com/v1'
             - name: MODEL_NAME
-              value: 'YOUR_MODEL_NAME_HERE'
+              value: 'qwen-25-7b-instruct'
             - name: MAX_TOKENS
               value: '1024'
             - name: TOP_P
@@ -66,13 +66,13 @@ spec:
             - name: PRESENCE_PENALTY
               value: '1.03'
             - name: MILVUS_HOST
-              value: 'your_milvus_host'
+              value: 'vectordb-milvus.milvus.svc.cluster.local'
             - name: MILVUS_PORT
               value: '19530'
             - name: MILVUS_USERNAME
-              value: 'your_milvus_username'
+              value: 'root'
             - name: MILVUS_PASSWORD
-              value: 'your_milvus_password'
+              value: 'Milvus'
             - name: MILVUS_COLLECTIONS_FILE
               value: '/opt/app-root/src/collections.json'
             - name: DEFAULT_COLLECTION
@@ -84,7 +84,7 @@ spec:
             - name: SCORE_THRESHOLD
               value: '0.99'
             - name: EMBEDDING_MODEL_NAME
-              value: 'YOUR_EMBEDDING_MODEL_NAME_HERE'
+              value: 'ibm-granite/granite-embedding-278m-multilingual'
           securityContext:
             capabilities:
               drop:
@@ -108,7 +108,7 @@ spec:
             successThreshold: 1
             failureThreshold: 24
           terminationMessagePolicy: File
-          image: 'quay.io/nebula0248/openshift-ai-llm-gradio-rag-milvus-vllm-openai:ca745cc'
+          image: 'quay.io/nebula0248/openshift-ai-llm-gradio-rag-milvus-vllm-openai:main'
           volumeMounts:
             - name: collections
               mountPath: /opt/app-root/src/collections.json

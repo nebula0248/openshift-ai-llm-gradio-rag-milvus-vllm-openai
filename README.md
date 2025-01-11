@@ -50,5 +50,3 @@ The different parameters you can/must pass as environment variables in the deplo
 - MAX_RETRIEVED_DOCS: Maximum number of documents returned by the search. Optional, defaults to 4
 - SCORE_THRESHOLD: Maximum allowed score when retrieving document (the score is a cosine distance, the lesser the better. Optional, defaults to 0.99
 - EMBEDDING_MODEL_NAME: The Hugging Face Embedding Model name and path (e.g. ibm-granite/granite-embedding-278m-multilingual)
-
-The deployment replicas is set to 0 initially to let you properly fill in those parameters. Don't forget to scale it up if you want see something 😉!
